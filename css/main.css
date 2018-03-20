@@ -218,6 +218,7 @@ h6 {
   line-height: 1.5;
   font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
 }
+h1,
 h2,
 h3,
 h4,
@@ -404,7 +405,7 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
   border: 1px solid #ddd;
-  font-size: 16px;
+  font-size: 14px;
   table-layout: fixed;
   word-wrap: break-all;
 }
@@ -486,7 +487,7 @@ pre,
   overflow: auto;
   margin: 20px 0;
   padding: 0;
-  font-size: 15px;
+  font-size: 13px;
   color: #4d4d4c;
   background: #f7f7f7;
   line-height: 1.6;
@@ -501,7 +502,7 @@ code {
   color: #555;
   background: #eee;
   border-radius: 3px;
-  font-size: 15px;
+  font-size: 13px;
 }
 pre {
   padding: 10px;
@@ -1135,7 +1136,7 @@ pre .javascript .function {
 }
 .site-subtitle {
   margin-top: 10px;
-  font-size: 14px;
+  font-size: 13px;
   color: #ddd;
 }
 .use-motion .brand {
@@ -1823,7 +1824,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #208b83;
+  background: #7cb146;
 }
 .links-of-blogroll {
   font-size: 13px;
