@@ -282,7 +282,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/19/how-to-read/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/15/how-to-build-a-blog-with-GitHub-Pages-and-Hexo/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="pobenliu">
@@ -301,7 +301,194 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/03/19/how-to-read/" itemprop="url">如何阅读一本书</a></h1>
+                <a class="post-title-link" href="/2018/04/15/how-to-build-a-blog-with-GitHub-Pages-and-Hexo/" itemprop="url">如何使用 GitHub Pages 和 Hexo 搭建个人博客</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-15T14:43:58+08:00">
+                2018-04-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/04/15/how-to-build-a-blog-with-GitHub-Pages-and-Hexo/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/04/15/how-to-build-a-blog-with-GitHub-Pages-and-Hexo/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><em>摘要</em></p>
+<p>本文介绍在 macOS 系统下如何使用 GitHub Pages 和 Hexo 搭建个人博客。</p>
+<p>笔者电脑是 MacBook Pro，以下操作都是在 macOS 下进行。</p>
+<h2 id="GitHub-Pages"><a href="#GitHub-Pages" class="headerlink" title="GitHub Pages"></a>GitHub Pages</h2><p><a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a> 是 GitHub 提供的一个静态网站托管服务，网站内容可以直接存放在 GitHub 的 repository（仓库）中，由于使用方便，可定制性强，该服务在程序员中广受欢迎。目前 GitHub Pages 对应的仓库容量上限是1GB，网站的访问流量上限是100GB/月，每小时支持10次以内的网站部署。</p>
+<p>在 GitHub 创建一个名为 yourname.github.io 的仓库，其中 yourname 是你 GitHub 账户的 ID。如下图所示：</p>
+<img src="/2018/04/15/how-to-build-a-blog-with-GitHub-Pages-and-Hexo/GitHub-Pages.png" title="This is an example image">
+<p>其中 yourname.github.io 即是 GitHub Pages 提供的网站域名。</p>
+<h2 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h2><p><a href="https://hexo.io/zh-cn/" target="_blank" rel="noopener">Hexo</a> 是一个静态博客框架，作者是台湾的一位技术人员（<a href="https://twitter.com/tommy351" target="_blank" rel="noopener">作者 Twitter</a>），所以中文文档齐全且更新及时。Hexo 支持 Markdown，可快速部署至 GitHub Pages，拥有很多简洁漂亮的博客主题。相较于 GitHub Pages 官网推荐的博客框架 Jekyll，使用 Hexo 无需了解太多的网页开发知识，即可快速搭建美观的个人博客。</p>
+<p>安装 Hexo 前需要确保电脑上已安装以下程序：</p>
+<ul>
+<li>Git</li>
+<li>Node.js</li>
+</ul>
+<p>Homebrew（<a href="https://brew.sh/index_zh-cn.html" target="_blank" rel="noopener">官网</a>）是一个很方便的软件包管理器，可以使用命令行安装所需的软件。在 terminal 中输入以下命令安装 Homebrew。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/bin/ruby -e <span class="string">"<span class="variable">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)</span>"</span></span><br></pre></td></tr></table></figure>
+<h3 id="安装-Git"><a href="#安装-Git" class="headerlink" title="安装 Git"></a>安装 Git</h3><p>macOS 有两种方式安装 git。</p>
+<p>第一种是通过 Xcode。在 terminal 中输入以下命令，如果 macOS 尚未安装 git，terminal 会弹窗提示你安装 Command Line Tools，根据提示操作即可。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git --version</span><br></pre></td></tr></table></figure>
+<p>第二种是通过 Homebrew。在 terminal 中输入以下命令即可。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install git</span><br></pre></td></tr></table></figure>
+<p>建议查看 git 版本以确认安装成功。</p>
+<h3 id="安装-Node-js"><a href="#安装-Node-js" class="headerlink" title="安装 Node.js"></a>安装 Node.js</h3><p>Hexo 运行依赖 Node.js 环境，可直接使用 Homebrew 安装。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install node</span><br></pre></td></tr></table></figure>
+<p>检查 Node.js 的版本号。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node -v</span><br></pre></td></tr></table></figure>
+<h3 id="安装-Hexo"><a href="#安装-Hexo" class="headerlink" title="安装 Hexo"></a>安装 Hexo</h3><p>在配置好相关的软件环境，就可以安装 Hexo，考虑到 Hexo 也在不断迭代更新，网上一些教程的操作方法已经过时了，建议大家根据<a href="https://hexo.io/zh-cn/docs/index.html" target="_blank" rel="noopener">官方的文档</a>操作，以下操作以写文章时官网的文档为准。</p>
+<p>使用 npm 安装 Hexo。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+<p>执行下列命令，Hexo 将会在指定文件夹中新建所需要的文件，其中 <folder> 是指你的博客文件夹。</folder></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo init &lt;folder&gt;</span><br><span class="line"><span class="built_in">cd</span> &lt;folder&gt;</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
+<p>之后启动 Hexo。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+<p>在浏览器中输入网址 <code>http://localhost:4000/</code>，即可在本地查看网站。</p>
+<h3 id="关联-GitHub"><a href="#关联-GitHub" class="headerlink" title="关联 GitHub"></a>关联 GitHub</h3><p>目前可以在本地查看网站，接下来就是关联你的 GitHub 账号，将网站托管在  GitHub Pages。</p>
+<p>在 <folder> 目录下打开 <code>_config.yml</code> 文件，修改以下内容，<code>yourname</code> 就是你的 GitHub 账户 ID。</folder></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repository: https://github.com/yourname/yourname.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
+<p>还需要安装  <a href="https://github.com/hexojs/hexo-deployer-git" target="_blank" rel="noopener">hexo-deployer-git</a>。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+<h3 id="部署-Hexo"><a href="#部署-Hexo" class="headerlink" title="部署 Hexo"></a>部署 Hexo</h3><p>在 <folder> 目录生成静态网页文件。</folder></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure>
+<p>部署网页。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+<p>此时，就可以在网址 <code>http://yourname.github.io</code> 中查看你的网站了。</p>
+<p>以下是 Hexo 常用的命令。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hexo clean  // 清除缓存文件 (db.json) 和已生成的静态文件 (public)</span><br><span class="line">hexo g  	// hexo generate 命令的简写，生成静态文件</span><br><span class="line">hexo s		// hexo server 命令的简写，启动服务器。默认情况下，本地访问网址为：http://localhost:4000/</span><br><span class="line">hexo d		// hexo deploy 命令的简写，部署网站。</span><br></pre></td></tr></table></figure>
+<h2 id="写作博客"><a href="#写作博客" class="headerlink" title="写作博客"></a>写作博客</h2><p>可以执行下列命令来创建一篇新文章。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new [layout] &lt;title&gt;</span><br></pre></td></tr></table></figure>
+<p>其中 [layout] 默认有三种布局：post、page 和 draft，在缺省情况下为 post 布局。</p>
+<p>如果觉得麻烦，也可以直接在博客目录 <folder> 中 /source/_post 文件夹里面新建文件，删除博客的操作类似。</folder></p>
+<h2 id="NexT-主题"><a href="#NexT-主题" class="headerlink" title="NexT 主题"></a>NexT 主题</h2><p><a href="http://theme-next.iissnan.com/" target="_blank" rel="noopener">NexT</a> 是一个基于 Hexo 的简洁美观的主题框架，作者是国人，安装配置简便，集成了丰富的第三方服务，文档齐全，使用者甚众，本博客亦是采用 NexT 主题。</p>
+<p>本文不再详述 NexT 的安装步骤，可直接参考<a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="noopener">官方文档</a>。</p>
+<p><strong>参考</strong></p>
+<ol>
+<li><a href="https://zhuanlan.zhihu.com/p/26401542" target="_blank" rel="noopener">mac下搭建github博客</a></li>
+<li><a href="https://madongqiang2201.github.io/2016/07/21/Mac%E4%B8%8BHexo%EF%BC%8Bgithub-pages%E6%90%AD%E5%BB%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/" target="_blank" rel="noopener">Mac搭建Hexo博客及NexT主题配置优化</a></li>
+<li><a href="http://lixiaolai.com/2016/06/22/makecs-build-a-blog-with-hexo-on-github/" target="_blank" rel="noopener">使用 Hexo 为自己在 Github 上建一个静态 Blog 站点</a></li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/19/how-to-read-a-book/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="pobenliu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/19/how-to-read-a-book/" itemprop="url">如何阅读一本书</a></h1>
         
 
         <div class="post-meta">
@@ -332,9 +519,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/03/19/how-to-read/#comments" itemprop="discussionUrl">
+                <a href="/2018/03/19/how-to-read-a-book/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/03/19/how-to-read/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/03/19/how-to-read-a-book/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -582,7 +769,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -595,7 +782,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
