@@ -19,6 +19,15 @@
   --radius-lg: 24px;
   --font-sans: "Microsoft YaHei", "Microsoft YaHei UI", "PingFang SC", "Noto Sans CJK SC", "Source Han Sans SC", "Hiragino Sans GB", "Segoe UI", Arial, sans-serif;
   --font-serif: var(--font-sans);
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-reading: 1.0625rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.375rem;
+  --font-size-title-sm: clamp(1.375rem, 2vw, 1.75rem);
+  --font-size-title-md: clamp(1.75rem, 3.2vw, 2.5rem);
+  --font-size-title-lg: clamp(2.25rem, 5vw, 4.25rem);
 }
 
 :root[data-theme='dark'] {
@@ -57,7 +66,7 @@ body {
   background: var(--bg);
   color: var(--text);
   font-family: var(--font-sans);
-  font-size: 16px;
+  font-size: var(--font-size-base);
   line-height: 1.75;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -129,7 +138,7 @@ a:hover {
   gap: 0.65rem;
   margin: 0 0 1rem;
   color: var(--accent);
-  font-size: 0.76rem;
+  font-size: var(--font-size-xs);
   font-weight: 760;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -154,14 +163,17 @@ a:hover {
 .page-title {
   margin: 0;
   font-family: var(--font-serif);
-  font-size: clamp(2rem, 5vw, 3.7rem);
   font-weight: 600;
   letter-spacing: -0.02em;
   line-height: 1.2;
 }
 
-.posts-section .section-heading h2 {
-  font-size: clamp(1.75rem, 3.2vw, 2.6rem);
+.section-heading h2 {
+  font-size: var(--font-size-title-md);
+}
+
+.page-title {
+  font-size: var(--font-size-title-lg);
 }
 
 .text-link {
@@ -170,7 +182,7 @@ a:hover {
   align-items: center;
   gap: 0.45rem;
   color: var(--accent-deep);
-  font-size: 0.9rem;
+  font-size: var(--font-size-sm);
   font-weight: 700;
   text-decoration: none;
 }
@@ -205,7 +217,7 @@ a:hover {
   align-items: center;
   gap: 0.72rem;
   font-family: var(--font-serif);
-  font-size: 1.25rem;
+  font-size: var(--font-size-lg);
   font-weight: 700;
   text-decoration: none;
 }
@@ -218,7 +230,7 @@ a:hover {
   border: 1px solid var(--text);
   border-radius: 50%;
   font-family: var(--font-sans);
-  font-size: 0.8rem;
+  font-size: var(--font-size-xs);
   font-weight: 850;
 }
 
@@ -246,7 +258,7 @@ a:hover {
   background: transparent;
   color: var(--text-soft);
   cursor: pointer;
-  font-size: 0.9rem;
+  font-size: var(--font-size-sm);
   text-decoration: none;
 }
 
@@ -322,7 +334,7 @@ a:hover {
   max-width: 850px;
   margin: 0;
   font-family: var(--font-serif);
-  font-size: clamp(2.5rem, 6vw, 5.25rem);
+  font-size: var(--font-size-title-lg);
   font-weight: 600;
   letter-spacing: -0.035em;
   line-height: 1.05;
@@ -337,7 +349,7 @@ a:hover {
   max-width: 38rem;
   margin: 1.75rem 0 0;
   color: var(--text-soft);
-  font-size: clamp(1rem, 1.6vw, 1.13rem);
+  font-size: var(--font-size-lg);
 }
 
 .hero-note {
@@ -361,7 +373,7 @@ a:hover {
 .hero-note blockquote {
   margin: 0;
   font-family: var(--font-serif);
-  font-size: 1.4rem;
+  font-size: var(--font-size-xl);
   line-height: 1.6;
 }
 
@@ -371,7 +383,7 @@ a:hover {
   gap: 0.75rem;
   margin-top: 1.5rem;
   color: var(--muted);
-  font-size: 0.85rem;
+  font-size: var(--font-size-sm);
 }
 
 .mini-avatar {
@@ -446,7 +458,7 @@ a:hover {
 
 .post-date {
   color: var(--muted);
-  font-size: 0.83rem;
+  font-size: var(--font-size-sm);
 }
 
 .post-card h3 {
@@ -454,7 +466,7 @@ a:hover {
   z-index: 1;
   margin: 2.4rem 0 1rem;
   font-family: var(--font-serif);
-  font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+  font-size: var(--font-size-title-sm);
   font-weight: 600;
   line-height: 1.28;
 }
@@ -480,7 +492,7 @@ a:hover {
   margin-top: auto;
   padding-top: 2rem;
   color: var(--muted);
-  font-size: 0.82rem;
+  font-size: var(--font-size-sm);
 }
 
 .tag-list {
@@ -498,7 +510,7 @@ a:hover {
   border-radius: 999px;
   background: color-mix(in srgb, var(--surface) 90%, transparent);
   color: var(--text-soft);
-  font-size: 0.78rem;
+  font-size: var(--font-size-xs);
   font-weight: 650;
   text-decoration: none;
 }
@@ -526,7 +538,7 @@ a:hover {
   max-width: 650px;
   margin: 0 0 2rem;
   font-family: var(--font-serif);
-  font-size: clamp(1.8rem, 3.8vw, 3rem);
+  font-size: var(--font-size-title-md);
   font-weight: 600;
   letter-spacing: -0.02em;
   line-height: 1.2;
@@ -552,7 +564,7 @@ a:hover {
   max-width: 42rem;
   margin: 1.2rem 0 0;
   color: var(--text-soft);
-  font-size: 1.08rem;
+  font-size: var(--font-size-lg);
 }
 
 .archive-list {
@@ -574,7 +586,7 @@ a:hover {
   margin: 0;
   color: var(--accent);
   font-family: var(--font-serif);
-  font-size: 2.2rem;
+  font-size: var(--font-size-title-md);
 }
 
 .archive-items {
@@ -593,12 +605,12 @@ a:hover {
 .archive-item time,
 .archive-item span {
   color: var(--muted);
-  font-size: 0.82rem;
+  font-size: var(--font-size-sm);
 }
 
 .archive-item a {
   font-family: var(--font-serif);
-  font-size: 1.08rem;
+  font-size: var(--font-size-lg);
   font-weight: 600;
   text-decoration: none;
 }
@@ -624,12 +636,12 @@ a:hover {
 
 .tag-card strong {
   font-family: var(--font-serif);
-  font-size: 1.45rem;
+  font-size: var(--font-size-title-sm);
 }
 
 .tag-card span {
   color: var(--muted);
-  font-size: 0.8rem;
+  font-size: var(--font-size-xs);
 }
 
 .about-grid {
@@ -655,13 +667,13 @@ a:hover {
 .about-copy h2 {
   margin: 0 0 1.2rem;
   font-family: var(--font-serif);
-  font-size: clamp(2rem, 5vw, 3.4rem);
+  font-size: var(--font-size-title-md);
   line-height: 1.2;
 }
 
 .about-copy p {
   color: var(--text-soft);
-  font-size: 1.08rem;
+  font-size: var(--font-size-lg);
 }
 
 .social-links {
@@ -680,7 +692,7 @@ a:hover {
   border: 1px solid var(--line-strong);
   border-radius: 999px;
   background: var(--surface);
-  font-size: 0.88rem;
+  font-size: var(--font-size-sm);
   font-weight: 700;
   text-decoration: none;
 }
@@ -708,7 +720,7 @@ a:hover {
   max-width: 900px;
   margin: 1.5rem auto;
   font-family: var(--font-serif);
-  font-size: clamp(2.5rem, 7vw, 5.6rem);
+  font-size: var(--font-size-title-lg);
   font-weight: 600;
   letter-spacing: -0.03em;
   line-height: 1.12;
@@ -718,7 +730,7 @@ a:hover {
   max-width: 670px;
   margin: 0 auto 1.5rem;
   color: var(--text-soft);
-  font-size: 1.08rem;
+  font-size: var(--font-size-lg);
 }
 
 .article-meta {
@@ -727,7 +739,7 @@ a:hover {
   justify-content: center;
   gap: 0.55rem 1rem;
   color: var(--muted);
-  font-size: 0.83rem;
+  font-size: var(--font-size-sm);
 }
 
 .article-shell {
@@ -746,13 +758,13 @@ a:hover {
   border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
   background: var(--accent-soft);
   color: var(--text-soft);
-  font-size: 0.9rem;
+  font-size: var(--font-size-sm);
 }
 
 .prose {
   min-width: 0;
   font-family: var(--font-serif);
-  font-size: clamp(1.02rem, 1.7vw, 1.13rem);
+  font-size: var(--font-size-reading);
   line-height: 1.95;
 }
 
@@ -770,12 +782,12 @@ a:hover {
 
 .prose h2 {
   margin: 3.5rem 0 1.25rem;
-  font-size: clamp(1.65rem, 3vw, 2.25rem);
+  font-size: var(--font-size-title-md);
 }
 
 .prose h3 {
   margin: 2.6rem 0 1rem;
-  font-size: clamp(1.25rem, 2.3vw, 1.55rem);
+  font-size: var(--font-size-title-sm);
 }
 
 .prose p,
@@ -821,7 +833,7 @@ a:hover {
   padding: 1.3rem 1.4rem;
   border: 1px solid var(--line);
   border-radius: var(--radius-md);
-  font-size: 0.86rem;
+  font-size: var(--font-size-sm);
   line-height: 1.7;
   box-shadow: var(--shadow);
 }
@@ -849,7 +861,7 @@ a:hover {
   background: color-mix(in srgb, var(--surface) 88%, transparent);
   color: var(--muted);
   cursor: pointer;
-  font-size: 0.72rem;
+  font-size: var(--font-size-xs);
   opacity: 0;
   transition: opacity 160ms ease;
 }
@@ -866,7 +878,7 @@ a:hover {
   overflow-x: auto;
   border-collapse: collapse;
   font-family: var(--font-sans);
-  font-size: 0.9rem;
+  font-size: var(--font-size-sm);
 }
 
 .prose th,
@@ -897,7 +909,7 @@ a:hover {
 .toc-title {
   margin: 0 0 0.8rem;
   color: var(--muted);
-  font-size: 0.74rem;
+  font-size: var(--font-size-xs);
   font-weight: 760;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -914,7 +926,7 @@ a:hover {
 .toc a {
   display: block;
   color: var(--text-soft);
-  font-size: 0.82rem;
+  font-size: var(--font-size-sm);
   line-height: 1.45;
   text-decoration: none;
 }
@@ -941,7 +953,7 @@ a:hover {
   background: transparent;
   color: var(--text-soft);
   cursor: pointer;
-  font-size: 0.82rem;
+  font-size: var(--font-size-sm);
   text-decoration: none;
 }
 
@@ -972,7 +984,7 @@ a:hover {
   display: block;
   margin-bottom: 0.25rem;
   color: var(--muted);
-  font-size: 0.72rem;
+  font-size: var(--font-size-xs);
 }
 
 .search-shell {
@@ -994,7 +1006,7 @@ a:hover {
 
 .search-fallback {
   color: var(--muted);
-  font-size: 0.9rem;
+  font-size: var(--font-size-sm);
 }
 
 .search-box {
@@ -1027,14 +1039,14 @@ a:hover {
 .not-found h1 {
   margin: 1rem 0 0.5rem;
   font-family: var(--font-serif);
-  font-size: 2rem;
+  font-size: var(--font-size-title-md);
 }
 
 .site-footer {
   padding-block: 2rem;
   border-top: 1px solid var(--line);
   color: var(--muted);
-  font-size: 0.82rem;
+  font-size: var(--font-size-sm);
 }
 
 .footer-inner {
