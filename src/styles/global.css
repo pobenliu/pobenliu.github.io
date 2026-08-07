@@ -1,42 +1,42 @@
 :root {
   color-scheme: light;
-  --bg: #f4f0e8;
-  --surface: #fffdf8;
+  --bg: #fbfaf7;
+  --surface: #fffefa;
   --surface-strong: #ffffff;
-  --text: #1d1b18;
-  --text-soft: #4d4841;
-  --muted: #746d64;
-  --line: #ddd5c8;
-  --line-strong: #c5bbac;
-  --accent: #c84d2f;
-  --accent-deep: #92331f;
-  --accent-soft: #f3dcd2;
-  --selection: #efd0c2;
-  --code-bg: #efebe4;
-  --shadow: 0 18px 50px rgba(49, 38, 27, 0.08);
+  --text: #37312c;
+  --text-soft: #625b55;
+  --muted: #756d66;
+  --line: #ebe5dc;
+  --line-strong: #d9d0c5;
+  --accent: #a85f45;
+  --accent-deep: #8d4c37;
+  --accent-soft: #f5e9e2;
+  --selection: #f0ddd4;
+  --code-bg: #f5f1eb;
+  --shadow: 0 14px 38px rgba(74, 58, 43, 0.055);
   --radius-sm: 10px;
-  --radius-md: 18px;
-  --radius-lg: 28px;
-  --font-sans: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-  --font-serif: "Songti SC", STSong, "Noto Serif CJK SC", "Source Han Serif SC", Georgia, serif;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --font-sans: "Microsoft YaHei", "Microsoft YaHei UI", "PingFang SC", "Noto Sans CJK SC", "Source Han Sans SC", "Hiragino Sans GB", "Segoe UI", Arial, sans-serif;
+  --font-serif: var(--font-sans);
 }
 
 :root[data-theme='dark'] {
   color-scheme: dark;
-  --bg: #171614;
-  --surface: #211f1c;
-  --surface-strong: #292622;
-  --text: #f1ece3;
-  --text-soft: #d1c9bd;
-  --muted: #a79e91;
-  --line: #3d3933;
-  --line-strong: #554e45;
-  --accent: #ef805f;
-  --accent-deep: #ff9a7c;
-  --accent-soft: #4a2b23;
-  --selection: #633628;
-  --code-bg: #24211e;
-  --shadow: 0 18px 50px rgba(0, 0, 0, 0.22);
+  --bg: #292521;
+  --surface: #322e29;
+  --surface-strong: #3a3530;
+  --text: #f6f2eb;
+  --text-soft: #d8d0c7;
+  --muted: #b4aaa0;
+  --line: #4a443d;
+  --line-strong: #625950;
+  --accent: #e9a084;
+  --accent-deep: #f3b69f;
+  --accent-soft: #4a352d;
+  --selection: #5b3d33;
+  --code-bg: #302b27;
+  --shadow: 0 14px 38px rgba(0, 0, 0, 0.16);
 }
 
 *,
@@ -54,9 +54,7 @@ html {
 body {
   margin: 0;
   min-height: 100vh;
-  background:
-    radial-gradient(circle at 12% 8%, color-mix(in srgb, var(--accent-soft) 52%, transparent) 0, transparent 31rem),
-    var(--bg);
+  background: var(--bg);
   color: var(--text);
   font-family: var(--font-sans);
   font-size: 16px;
@@ -158,8 +156,8 @@ a:hover {
   font-family: var(--font-serif);
   font-size: clamp(2rem, 5vw, 3.7rem);
   font-weight: 600;
-  letter-spacing: -0.035em;
-  line-height: 1.15;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
 }
 
 .text-link {
@@ -322,8 +320,8 @@ a:hover {
   font-family: var(--font-serif);
   font-size: clamp(3rem, 8vw, 6.9rem);
   font-weight: 600;
-  letter-spacing: -0.065em;
-  line-height: 0.98;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
 }
 
 .hero h1 em {
@@ -510,13 +508,14 @@ a:hover {
 .topics-band {
   margin-bottom: clamp(5rem, 10vw, 8rem);
   padding: clamp(2rem, 6vw, 4rem);
+  border: 1px solid var(--line);
   border-radius: var(--radius-lg);
-  background: var(--text);
-  color: var(--bg);
+  background: var(--surface);
+  color: var(--text);
 }
 
 .topics-band .eyebrow {
-  color: color-mix(in srgb, var(--accent) 85%, white);
+  color: var(--accent);
 }
 
 .topics-band h2 {
@@ -524,21 +523,21 @@ a:hover {
   margin: 0 0 2rem;
   font-family: var(--font-serif);
   font-size: clamp(2rem, 5vw, 4.2rem);
-  font-weight: 500;
-  letter-spacing: -0.04em;
-  line-height: 1.15;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
 }
 
 .topics-band .tag {
-  border-color: color-mix(in srgb, var(--bg) 25%, transparent);
-  background: transparent;
-  color: var(--bg);
+  border-color: var(--line);
+  background: var(--bg);
+  color: var(--text-soft);
 }
 
 .topics-band .tag:hover {
   border-color: var(--accent);
-  background: var(--accent);
-  color: white;
+  background: var(--accent-soft);
+  color: var(--accent-deep);
 }
 
 .page-hero {
@@ -707,8 +706,8 @@ a:hover {
   font-family: var(--font-serif);
   font-size: clamp(2.5rem, 7vw, 5.6rem);
   font-weight: 600;
-  letter-spacing: -0.055em;
-  line-height: 1.08;
+  letter-spacing: -0.03em;
+  line-height: 1.12;
 }
 
 .article-description {
@@ -1149,7 +1148,7 @@ a:hover {
   }
 
   .article-title {
-    letter-spacing: -0.04em;
+    letter-spacing: -0.02em;
   }
 
   .article-shell {
