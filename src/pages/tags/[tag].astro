@@ -1,0 +1,29 @@
+---
+import PostCard from '../../components/PostCard.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { allTags, getPublishedPosts } from '../../utils/posts';
+
+export async function getStaticPaths() {
+  const posts = await getPublishedPosts();
+  return allTags(posts).map(([tag]) => ({
+    params: { tag },
+    props: { tag, posts: posts.filter((post) => post.data.tags.includes(tag)) },
+  }));
+}
+
+const { tag, posts } = Astro.props;
+---
+
+<BaseLayout title={`#${tag}`} description={`Reveries 中带有“${tag}”标签的文章。`}>
+  <header class="container page-hero">
+    <p class="eyebrow">Topic archive</p>
+    <h1 class="page-title">#{tag}</h1>
+    <p class="page-lede">共 {posts.length} 篇文章。</p>
+  </header>
+
+  <section class="container posts-section" aria-label={`${tag} 标签文章`}>
+    <div class="post-grid">
+      {posts.map((post, index) => <PostCard post={post} index={index} />)}
+    </div>
+  </section>
+</BaseLayout>

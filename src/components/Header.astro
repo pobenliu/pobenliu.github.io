@@ -1,0 +1,58 @@
+---
+import { NAV_ITEMS, SITE } from '../consts';
+
+const pathname = Astro.url.pathname;
+const isActive = (href: string) => href === '/' ? pathname === '/' : pathname.startsWith(href);
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="/" aria-label={`${SITE.title} 首页`}>
+      <span class="brand-mark" aria-hidden="true">R</span>
+      <span class="brand-name">{SITE.title}</span>
+    </a>
+
+    <nav class="desktop-nav" aria-label="主导航">
+      {NAV_ITEMS.map((item) => (
+        <a class="nav-link" href={item.href} aria-current={isActive(item.href) ? 'page' : undefined}>
+          {item.label}
+        </a>
+      ))}
+    </nav>
+
+    <div class="header-actions">
+      <a class="search-link" href="/search/" aria-label="搜索文章" title="搜索">⌕</a>
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="切换深色模式" title="切换明暗主题">
+        <span aria-hidden="true">◐</span>
+      </button>
+
+      <details class="mobile-menu">
+        <summary aria-label="打开导航菜单">☰</summary>
+        <nav class="mobile-panel" aria-label="移动端导航">
+          {NAV_ITEMS.map((item) => <a href={item.href}>{item.label}</a>)}
+          <a href="/search/">搜索</a>
+        </nav>
+      </details>
+    </div>
+  </div>
+</header>
+
+<script>
+  const toggles = document.querySelectorAll<HTMLElement>('[data-theme-toggle]');
+  const updateLabels = () => {
+    const isDark = document.documentElement.dataset.theme === 'dark';
+    toggles.forEach((toggle) => toggle.setAttribute('aria-label', isDark ? '切换浅色模式' : '切换深色模式'));
+  };
+
+  toggles.forEach((toggle) => {
+    toggle.addEventListener('click', () => {
+      const current = document.documentElement.dataset.theme;
+      const next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.dataset.theme = next;
+      localStorage.setItem('theme', next);
+      updateLabels();
+    });
+  });
+
+  updateLabels();
+</script>

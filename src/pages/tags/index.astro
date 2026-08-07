@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { allTags, getPublishedPosts } from '../../utils/posts';
+
+const posts = await getPublishedPosts();
+const tags = allTags(posts);
+---
+
+<BaseLayout title="文章标签" description="按主题浏览 Reveries 的文章。">
+  <header class="container page-hero">
+    <p class="eyebrow">Topics & trails</p>
+    <h1 class="page-title">文章标签</h1>
+    <p class="page-lede">技术实践、阅读方法，以及一路延伸出去的思考线索。</p>
+  </header>
+
+  <div class="container tag-cloud">
+    {tags.map(([tag, count]) => (
+      <a class="tag-card" href={`/tags/${encodeURIComponent(tag)}/`}>
+        <strong>#{tag}</strong>
+        <span>{count} 篇文章 →</span>
+      </a>
+    ))}
+  </div>
+</BaseLayout>

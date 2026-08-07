@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="搜索" description="搜索 Reveries 的全部文章。">
+  <header class="container page-hero">
+    <p class="eyebrow">Full-text search</p>
+    <h1 class="page-title">搜索文章</h1>
+    <p class="page-lede">输入标题、关键词或正文片段。搜索完全在浏览器本地完成。</p>
+  </header>
+
+  <section class="container search-shell">
+    <link href="/pagefind/pagefind-component-ui.css" rel="stylesheet" />
+    <script is:inline src="/pagefind/pagefind-component-ui.js" type="module"></script>
+    <div class="search-box">
+      <div class="search-components">
+        <pagefind-input placeholder="搜索文章…"></pagefind-input>
+        <pagefind-keyboard-hints></pagefind-keyboard-hints>
+        <pagefind-summary></pagefind-summary>
+        <pagefind-results></pagefind-results>
+      </div>
+      <p class="search-fallback" data-search-fallback>搜索索引会在正式构建后启用。</p>
+    </div>
+  </section>
+
+  <script is:inline>
+    customElements.whenDefined('pagefind-input').then(() => {
+      document.querySelector('[data-search-fallback]')?.remove();
+    });
+  </script>
+</BaseLayout>

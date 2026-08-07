@@ -1,0 +1,25 @@
+---
+import { SITE } from '../../consts';
+
+export function getStaticPaths() {
+  return ['2018', '2018/03', '2018/04'].map((legacy) => ({ params: { legacy } }));
+}
+
+const target = '/archives/';
+const canonicalURL = new URL(target, SITE.url);
+---
+
+<!doctype html>
+<html lang={SITE.language}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="robots" content="noindex" />
+    <meta http-equiv="refresh" content={`0;url=${target}`} />
+    <link rel="canonical" href={canonicalURL} />
+    <title>正在前往文章归档 · {SITE.title}</title>
+  </head>
+  <body>
+    <p>旧归档地址已更新，<a href={target}>前往文章归档</a>。</p>
+  </body>
+</html>

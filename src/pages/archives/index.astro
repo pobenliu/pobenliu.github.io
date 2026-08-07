@@ -1,0 +1,36 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { formatDate, getPublishedPosts, postHref } from '../../utils/posts';
+
+const posts = await getPublishedPosts();
+const years = new Map<number, typeof posts>();
+for (const post of posts) {
+  const year = post.data.pubDate.getFullYear();
+  years.set(year, [...(years.get(year) ?? []), post]);
+}
+---
+
+<BaseLayout title="文章归档" description="Reveries 的全部文章，按发布时间归档。">
+  <header class="container page-hero">
+    <p class="eyebrow">Writing archive</p>
+    <h1 class="page-title">文章归档</h1>
+    <p class="page-lede">从 2018 年开始，把值得留下的技术实践和阅读方法整理在这里。</p>
+  </header>
+
+  <div class="container archive-list">
+    {[...years.entries()].map(([year, yearPosts]) => (
+      <section class="archive-year" aria-labelledby={`year-${year}`}>
+        <h2 id={`year-${year}`}>{year}</h2>
+        <div class="archive-items">
+          {yearPosts.map((post) => (
+            <article class="archive-item">
+              <time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate, { year: undefined, month: '2-digit', day: '2-digit' })}</time>
+              <a href={postHref(post)}>{post.data.title}</a>
+              <span>{post.data.tags[0]}</span>
+            </article>
+          ))}
+        </div>
+      </section>
+    ))}
+  </div>
+</BaseLayout>

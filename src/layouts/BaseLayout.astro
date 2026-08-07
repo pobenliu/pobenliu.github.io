@@ -1,0 +1,53 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE } from '../consts';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  type?: 'website' | 'article';
+  publishedTime?: Date;
+  schema?: Record<string, unknown>;
+  noindex?: boolean;
+  canonical?: boolean;
+}
+
+const {
+  title = SITE.title,
+  description = SITE.description,
+  image,
+  type,
+  publishedTime,
+  schema,
+  noindex,
+  canonical,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang={SITE.language} id="top">
+  <head>
+    <BaseHead
+      title={title}
+      description={description}
+      image={image}
+      type={type}
+      publishedTime={publishedTime}
+      schema={schema}
+      noindex={noindex}
+      canonical={canonical}
+    />
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">跳到正文</a>
+    <Header />
+    <main class="site-main" id="main-content">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>
