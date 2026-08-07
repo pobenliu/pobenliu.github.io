@@ -1601,12 +1601,20 @@ body {
 }
 
 .article-shell {
+  grid-template-areas: "article";
   grid-template-columns: minmax(0, 740px);
   gap: 1.5rem;
   padding-bottom: 5rem;
 }
 
+.article-shell.has-toc {
+  grid-template-areas:
+    "aside"
+    "article";
+}
+
 .prose {
+  grid-area: article;
   line-height: 1.9;
   text-align: justify;
 }
@@ -1642,11 +1650,76 @@ body {
 }
 
 .article-aside {
+  grid-area: aside;
   position: static;
 }
 
 .toc {
+  display: block;
+  padding: 0.8rem 0;
+  border: 1px solid var(--line);
+  border-width: 1px 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.toc-header {
+  min-height: 40px;
+}
+
+.toc-title {
   display: none;
+}
+
+.toc-toggle {
+  display: flex;
+  width: 100%;
+  min-height: 40px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  font-size: var(--font-size-sm);
+}
+
+.toc-toggle-label {
+  color: var(--muted);
+  font-size: var(--font-size-xs);
+}
+
+.toc ol {
+  display: none;
+  gap: 0;
+  padding: 0.4rem 0 0.2rem;
+}
+
+.toc.is-open ol {
+  display: grid;
+}
+
+.toc li {
+  min-width: 0;
+}
+
+.toc a {
+  position: relative;
+  padding: 0.36rem 0;
+  color: var(--muted);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.toc a:hover,
+.toc a.is-active {
+  color: var(--accent-deep);
+}
+
+.toc a.is-active {
+  font-weight: 600;
 }
 
 .article-actions {
@@ -1753,5 +1826,66 @@ body {
 @media (max-width: 480px) {
   .brand-name {
     display: inline;
+  }
+}
+
+@media (min-width: 1100px) {
+  .container.article-shell.has-toc {
+    width: min(100% - 3rem, 1030px);
+  }
+
+  .article-shell.has-toc {
+    grid-template-areas: "article aside";
+    grid-template-columns: minmax(0, 740px) minmax(170px, 190px);
+    gap: clamp(2.75rem, 4vw, 4rem);
+  }
+
+  .article-aside {
+    position: sticky;
+    top: 2rem;
+    max-height: calc(100vh - 4rem);
+    overflow-y: auto;
+    scrollbar-width: thin;
+  }
+
+  .toc {
+    padding: 0.15rem 0 0.25rem 1rem;
+    border-width: 0 0 0 1px;
+  }
+
+  .toc-header {
+    min-height: 0;
+  }
+
+  .toc-title {
+    display: block;
+    margin-bottom: 0.7rem;
+    color: var(--text);
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+  }
+
+  .toc-toggle {
+    display: none;
+  }
+
+  .toc ol,
+  .toc.is-open ol {
+    display: grid;
+  }
+
+  .toc a {
+    padding: 0.32rem 0;
+  }
+
+  .toc a.is-active::before {
+    position: absolute;
+    top: 0.32rem;
+    bottom: 0.32rem;
+    left: -1.05rem;
+    width: 2px;
+    background: var(--accent);
+    content: '';
   }
 }

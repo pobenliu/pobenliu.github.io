@@ -65,7 +65,7 @@ const schema = {
     </div>
   </header>
 
-  <div class="container article-shell">
+  <div class:list={['container', 'article-shell', { 'has-toc': tocHeadings.length > 0 }]}>
     <article class="prose" data-pagefind-body>
       {post.data.archived && (
         <aside class="archived-notice">
@@ -88,24 +88,39 @@ const schema = {
           </a>
         )}
       </nav>
-    </article>
 
-    <aside class="article-aside" aria-label="文章辅助导航">
-      {tocHeadings.length > 0 && (
-        <nav class="toc" aria-label="文章目录">
-          <p class="toc-title">On this page</p>
-          <ol>
-            {tocHeadings.map((heading) => (
-              <li><a href={`#${heading.slug}`} data-depth={heading.depth}>{heading.text}</a></li>
-            ))}
-          </ol>
-        </nav>
-      )}
       <div class="article-actions">
         <button type="button" data-copy-link>复制文章链接</button>
         <a href="/archives/">返回归档</a>
       </div>
-    </aside>
+    </article>
+
+    {tocHeadings.length > 0 && (
+      <aside class="article-aside" aria-label="文章辅助导航">
+        <nav class="toc" aria-label="文章目录" data-toc>
+          <div class="toc-header">
+            <p class="toc-title">文章目录</p>
+            <button
+              class="toc-toggle"
+              type="button"
+              aria-expanded="false"
+              aria-controls="article-toc-list"
+              data-toc-toggle
+            >
+              <span>文章目录</span>
+              <span class="toc-toggle-label">展开</span>
+            </button>
+          </div>
+          <ol id="article-toc-list">
+            {tocHeadings.map((heading) => (
+              <li>
+                <a href={`#${heading.slug}`} data-depth={heading.depth} data-toc-link>{heading.text}</a>
+              </li>
+            ))}
+          </ol>
+        </nav>
+      </aside>
+    )}
   </div>
 
   <script>
@@ -122,6 +137,52 @@ const schema = {
 
     window.addEventListener('scroll', updateProgress, { passive: true });
     updateProgress();
+
+    const toc = document.querySelector<HTMLElement>('[data-toc]');
+    const tocToggle = document.querySelector<HTMLButtonElement>('[data-toc-toggle]');
+    const tocToggleLabel = tocToggle?.querySelector<HTMLElement>('.toc-toggle-label');
+    const tocLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>('[data-toc-link]'));
+    const tocTargets = tocLinks
+      .map((link) => document.getElementById(decodeURIComponent(link.hash.slice(1))))
+      .filter((heading): heading is HTMLElement => Boolean(heading));
+
+    const setTocOpen = (open: boolean) => {
+      if (!toc || !tocToggle) return;
+      toc.classList.toggle('is-open', open);
+      tocToggle.setAttribute('aria-expanded', String(open));
+      if (tocToggleLabel) tocToggleLabel.textContent = open ? '收起' : '展开';
+    };
+
+    tocToggle?.addEventListener('click', () => {
+      setTocOpen(tocToggle.getAttribute('aria-expanded') !== 'true');
+    });
+
+    tocLinks.forEach((link) => {
+      link.addEventListener('click', () => {
+        if (window.matchMedia('(max-width: 1099px)').matches) setTocOpen(false);
+      });
+    });
+
+    const updateActiveToc = () => {
+      if (tocTargets.length === 0) return;
+      const readingLine = window.scrollY + Math.min(180, window.innerHeight * 0.24);
+      let activeHeading = tocTargets[0];
+
+      tocTargets.forEach((heading) => {
+        if (heading.offsetTop <= readingLine) activeHeading = heading;
+      });
+
+      tocLinks.forEach((link) => {
+        const isActive = decodeURIComponent(link.hash.slice(1)) === activeHeading.id;
+        link.classList.toggle('is-active', isActive);
+        if (isActive) link.setAttribute('aria-current', 'location');
+        else link.removeAttribute('aria-current');
+      });
+    };
+
+    window.addEventListener('scroll', updateActiveToc, { passive: true });
+    window.addEventListener('resize', updateActiveToc, { passive: true });
+    updateActiveToc();
 
     document.querySelectorAll<HTMLPreElement>('.prose pre').forEach((pre) => {
       const button = document.createElement('button');
