@@ -15,6 +15,7 @@ interface Props {
 
 const { post, headings, previous, next } = Astro.props;
 const tocHeadings = headings.filter((heading) => heading.depth === 2 || heading.depth === 3);
+const showToc = tocHeadings.length >= 3;
 const canonicalURL = new URL(postHref(post), Astro.site ?? SITE.url).toString();
 const socialImage = '/og.png';
 
@@ -65,7 +66,7 @@ const schema = {
     </div>
   </header>
 
-  <div class:list={['container', 'article-shell', { 'has-toc': tocHeadings.length > 0 }]}>
+  <div class:list={['container', 'article-shell', { 'has-toc': showToc }]}>
     <article class="prose" data-pagefind-body>
       {post.data.archived && (
         <aside class="archived-notice">
@@ -95,7 +96,7 @@ const schema = {
       </div>
     </article>
 
-    {tocHeadings.length > 0 && (
+    {showToc && (
       <aside class="article-aside" aria-label="文章辅助导航">
         <nav class="toc" aria-label="文章目录" data-toc>
           <div class="toc-header">
