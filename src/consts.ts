@@ -1,5 +1,5 @@
 export const SITE = {
-  title: 'Reveries',
+  title: "Hao's blog",
   author: 'pobenliu',
   description: '记录技术、阅读与长期思考。把复杂的问题，写成清楚的笔记。',
   url: 'https://pobenliu.github.io',
