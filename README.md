@@ -1,4 +1,4 @@
-# Reveries
+# Hao's blog
 
 pobenliu 的个人博客，基于 Astro 7、Markdown Content Collections 和 Pagefind 构建，部署到 GitHub Pages。
 
