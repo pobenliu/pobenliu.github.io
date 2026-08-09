@@ -1,6 +1,6 @@
 {
-  "name": "Reveries",
-  "short_name": "Reveries",
+  "name": "Hao's blog",
+  "short_name": "Hao's blog",
   "description": "记录技术、阅读与长期思考。",
   "start_url": "/",
   "display": "standalone",
