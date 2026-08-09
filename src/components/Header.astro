@@ -1,20 +1,12 @@
 ---
-import { NAV_ITEMS, SITE } from '../consts';
+import { NAV_ITEMS } from '../consts';
 
 const pathname = Astro.url.pathname;
-const isHome = pathname === '/';
 const isActive = (href: string) => href === '/' ? pathname === '/' : pathname.startsWith(href);
 ---
 
 <header class="site-header">
   <div class="container header-inner">
-    {!isHome && (
-      <a class="brand" href="/" aria-label={`${SITE.title} 首页`}>
-        <span class="brand-mark" aria-hidden="true">R</span>
-        <span class="brand-name">{SITE.title}</span>
-      </a>
-    )}
-
     <nav class="desktop-nav" aria-label="主导航">
       {NAV_ITEMS.map((item) => (
         <a class="nav-link" href={item.href} aria-current={isActive(item.href) ? 'page' : undefined}>
