@@ -17,7 +17,7 @@
   --radius-sm: 10px;
   --radius-md: 16px;
   --radius-lg: 24px;
-  --font-sans: "Microsoft YaHei", "Microsoft YaHei UI", "PingFang SC", "Noto Sans CJK SC", "Source Han Sans SC", "Hiragino Sans GB", "Segoe UI", Arial, sans-serif;
+  --font-sans: "Noto Sans SC", "Noto Sans CJK SC", "Source Han Sans SC", "PingFang SC", "Microsoft YaHei", "Microsoft YaHei UI", "Hiragino Sans GB", "Segoe UI", Arial, sans-serif;
   --font-serif: var(--font-sans);
   --font-size-xs: 0.75rem;
   --font-size-sm: 0.875rem;
@@ -67,9 +67,10 @@ body {
   color: var(--text);
   font-family: var(--font-sans);
   font-size: var(--font-size-base);
+  font-weight: 500;
   line-height: 1.75;
   text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
+  -webkit-font-smoothing: auto;
 }
 
 ::selection {
@@ -1435,7 +1436,7 @@ body {
 .post-card h3 {
   margin: 0.4rem 0 0.7rem;
   font-size: var(--font-size-title-md);
-  font-weight: 500;
+  font-weight: 600;
   line-height: 1.35;
 }
 
@@ -1491,7 +1492,7 @@ body {
 
 .page-title {
   font-size: var(--font-size-title-lg);
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: -0.01em;
 }
 
@@ -1530,7 +1531,7 @@ body {
   margin: 0 0 1.5rem;
   color: var(--text);
   font-size: var(--font-size-title-md);
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .archive-items {
@@ -1564,7 +1565,7 @@ body {
 }
 
 .archive-item a {
-  font-weight: 400;
+  font-weight: 500;
 }
 
 .tag-cloud {
@@ -1584,7 +1585,7 @@ body {
 
 .tag-card strong {
   font-size: var(--font-size-title-sm);
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .about-grid {
@@ -1600,7 +1601,7 @@ body {
 }
 
 .about-copy h2 {
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .button-link {
@@ -1615,7 +1616,7 @@ body {
 .article-title {
   margin: 0.9rem auto 0.7rem;
   font-size: var(--font-size-title-lg);
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: -0.01em;
   line-height: 1.35;
 }
@@ -1790,7 +1791,19 @@ body {
 .subscribe-copy h2 {
   margin: 0 0 0.75rem;
   font-size: var(--font-size-title-md);
-  font-weight: 500;
+  font-weight: 600;
+}
+
+.post-date,
+.post-card-footer,
+.post-description,
+.home-archive-link,
+.page-lede,
+.article-description,
+.article-meta,
+.site-footer,
+.toc {
+  font-weight: 400;
 }
 
 .subscribe-copy > p {
