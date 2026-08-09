@@ -1357,6 +1357,26 @@ body {
   font-size: var(--font-size-base);
 }
 
+.header-icon {
+  display: grid;
+  width: 1.25rem;
+  height: 1.25rem;
+  flex: 0 0 1.25rem;
+  place-items: center;
+}
+
+.search-link .header-icon {
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-width: 1.7;
+}
+
+.theme-icon {
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
 .search-link:hover,
 .theme-toggle:hover,
 .mobile-menu summary:hover {
