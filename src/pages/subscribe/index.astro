@@ -1,0 +1,58 @@
+---
+import { SITE } from '../../consts';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const feedURL = new URL('/rss.xml', Astro.site ?? SITE.url).toString();
+---
+
+<BaseLayout title="订阅" description="使用 RSS 阅读器订阅 Reveries 的最新文章。">
+  <header class="container page-hero">
+    <p class="eyebrow">Follow new writing</p>
+    <h1 class="page-title">订阅博客</h1>
+    <p class="page-lede">通过 RSS 获取新文章，不需要注册账户，也不会收到营销邮件。</p>
+  </header>
+
+  <section class="container subscribe-shell" aria-labelledby="rss-reader-title">
+    <div class="subscribe-copy">
+      <h2 id="rss-reader-title">使用 RSS 阅读器订阅</h2>
+      <p>在你常用的 RSS 阅读器中添加下面的地址，博客发布新文章后便会自动出现。</p>
+
+      <ol class="subscribe-steps">
+        <li>复制 RSS 地址。</li>
+        <li>打开 RSS 阅读器，选择“添加订阅”或类似功能。</li>
+        <li>粘贴地址并确认订阅。</li>
+      </ol>
+
+      <div class="feed-address">
+        <input type="url" value={feedURL} readonly aria-label="RSS 订阅地址" data-feed-address />
+        <button type="button" data-copy-feed>复制地址</button>
+      </div>
+
+      <p class="subscribe-note">直接打开 RSS 地址时看到文章列表或 XML 内容都属于正常现象；RSS 阅读器会自动读取其中的数据。</p>
+
+      <div class="subscribe-links">
+        <a class="button-link" href="/rss.xml">查看 RSS 源</a>
+        <a class="button-link" href="/">返回首页</a>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const copyButton = document.querySelector<HTMLButtonElement>('[data-copy-feed]');
+    const feedAddress = document.querySelector<HTMLInputElement>('[data-feed-address]');
+
+    copyButton?.addEventListener('click', async () => {
+      if (!feedAddress) return;
+      feedAddress.select();
+
+      try {
+        await navigator.clipboard.writeText(feedAddress.value);
+        copyButton.textContent = '已复制';
+      } catch {
+        copyButton.textContent = '请手动复制';
+      }
+
+      window.setTimeout(() => (copyButton.textContent = '复制地址'), 1600);
+    });
+  </script>
+</BaseLayout>
