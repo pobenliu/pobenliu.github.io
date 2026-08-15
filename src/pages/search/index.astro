@@ -2,7 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 ---
 
-<BaseLayout title="搜索" description="搜索 Hao's blog 的全部文章。">
+<BaseLayout title="搜索" description="搜索 Hao's blog 的全部文章。" noindex>
   <header class="container page-hero">
     <p class="eyebrow">Full-text search</p>
     <h1 class="page-title">搜索文章</h1>
@@ -14,18 +14,57 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     <script is:inline src="/pagefind/pagefind-component-ui.js" type="module"></script>
     <div class="search-box">
       <div class="search-components">
+        <pagefind-config preload bundle-path="/pagefind/"></pagefind-config>
         <pagefind-input placeholder="搜索文章…"></pagefind-input>
         <pagefind-keyboard-hints></pagefind-keyboard-hints>
         <pagefind-summary></pagefind-summary>
         <pagefind-results></pagefind-results>
       </div>
-      <p class="search-fallback" data-search-fallback>搜索索引会在正式构建后启用。</p>
+      <p class="search-fallback" data-search-fallback role="status" aria-live="polite">正在加载站内搜索…</p>
+      <noscript><p class="search-fallback">站内搜索需要启用 JavaScript；你也可以前往归档页浏览全部文章。</p></noscript>
     </div>
   </section>
 
   <script is:inline>
-    customElements.whenDefined('pagefind-input').then(() => {
-      document.querySelector('[data-search-fallback]')?.remove();
-    });
+    const fallback = document.querySelector('[data-search-fallback]');
+    const showLoadError = () => {
+      if (fallback) fallback.textContent = '搜索暂时无法加载，请刷新页面后重试，或前往归档页浏览文章。';
+    };
+
+    customElements.whenDefined('pagefind-input')
+      .then(async () => {
+        const manager = window.PagefindComponents?.getInstanceManager?.();
+        const instance = manager?.getInstance?.('default');
+
+        instance?.setTranslations?.({
+          placeholder: '搜索文章…',
+          clear_search: '清除',
+          load_more: '加载更多结果',
+          search_label: '搜索本站文章',
+          zero_results: '没有找到与“[SEARCH_TERM]”相关的内容',
+          many_results: '找到 [COUNT] 个与“[SEARCH_TERM]”相关的结果',
+          one_result: '找到 [COUNT] 个与“[SEARCH_TERM]”相关的结果',
+          total_zero_results: '没有结果',
+          total_one_result: '共 [COUNT] 个结果',
+          total_many_results: '共 [COUNT] 个结果',
+          searching: '正在搜索“[SEARCH_TERM]”…',
+          results_label: '搜索结果',
+          keyboard_navigate: '导航',
+          keyboard_select: '打开',
+          keyboard_clear: '清除',
+          keyboard_close: '关闭',
+          error_search: '搜索失败',
+          input_hint: '输入关键词后显示搜索结果',
+          loading: '正在加载',
+        });
+
+        await instance?.triggerLoad?.();
+        fallback?.remove();
+      })
+      .catch(showLoadError);
+
+    window.setTimeout(() => {
+      if (fallback?.isConnected) showLoadError();
+    }, 12000);
   </script>
 </BaseLayout>

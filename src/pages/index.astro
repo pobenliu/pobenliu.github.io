@@ -9,13 +9,16 @@ const posts = await getPublishedPosts();
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
+  '@id': `${SITE.url}/#website`,
   name: SITE.title,
   url: SITE.url,
   description: SITE.description,
   author: {
     '@type': 'Person',
+    '@id': `${SITE.url}/about/#person`,
     name: SITE.author,
-    url: SITE.github,
+    url: `${SITE.url}/about/`,
+    sameAs: [SITE.github, SITE.weibo],
   },
 };
 ---

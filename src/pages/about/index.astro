@@ -5,8 +5,9 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'Person',
+  '@id': `${SITE.url}/about/#person`,
   name: SITE.author,
-  url: SITE.url,
+  url: `${SITE.url}/about/`,
   image: `${SITE.url}/images/avatar.jpg`,
   sameAs: [SITE.github, SITE.weibo],
 };

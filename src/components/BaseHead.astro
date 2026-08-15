@@ -7,6 +7,9 @@ interface Props {
   image?: string;
   type?: 'website' | 'article';
   publishedTime?: Date;
+  updatedTime?: Date;
+  tags?: string[];
+  imageAlt?: string;
   schema?: Record<string, unknown>;
   noindex?: boolean;
   canonical?: boolean;
@@ -18,6 +21,9 @@ const {
   image = '/og.png',
   type = 'website',
   publishedTime,
+  updatedTime,
+  tags = [],
+  imageAlt = `${SITE.title} 分享图`,
   schema,
   noindex = false,
   canonical = true,
@@ -48,14 +54,21 @@ const imageURL = new URL(image, Astro.site ?? SITE.url);
 <meta property="og:title" content={pageTitle} />
 <meta property="og:description" content={description} />
 <meta property="og:image" content={imageURL} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content={imageAlt} />
 <meta property="og:site_name" content={SITE.title} />
 <meta property="og:locale" content={SITE.locale} />
 {publishedTime && <meta property="article:published_time" content={publishedTime.toISOString()} />}
+{updatedTime && <meta property="article:modified_time" content={updatedTime.toISOString()} />}
+{type === 'article' && <meta property="article:author" content={new URL('/about/', Astro.site ?? SITE.url)} />}
+{tags.map((tag) => <meta property="article:tag" content={tag} />)}
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={pageTitle} />
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={imageURL} />
+<meta name="twitter:image:alt" content={imageAlt} />
 
 <script is:inline>
   (() => {

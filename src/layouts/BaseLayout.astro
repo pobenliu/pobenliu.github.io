@@ -11,6 +11,9 @@ interface Props {
   image?: string;
   type?: 'website' | 'article';
   publishedTime?: Date;
+  updatedTime?: Date;
+  tags?: string[];
+  imageAlt?: string;
   schema?: Record<string, unknown>;
   noindex?: boolean;
   canonical?: boolean;
@@ -22,6 +25,9 @@ const {
   image,
   type,
   publishedTime,
+  updatedTime,
+  tags,
+  imageAlt,
   schema,
   noindex,
   canonical,
@@ -37,6 +43,9 @@ const {
       image={image}
       type={type}
       publishedTime={publishedTime}
+      updatedTime={updatedTime}
+      tags={tags}
+      imageAlt={imageAlt}
       schema={schema}
       noindex={noindex}
       canonical={canonical}

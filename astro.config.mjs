@@ -15,6 +15,7 @@ export default defineConfig({
         '/archives/2018/',
         '/archives/2018/03/',
         '/archives/2018/04/',
+        '/search/',
       ].includes(new URL(page).pathname),
     }),
   ],
